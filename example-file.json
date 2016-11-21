@@ -1,0 +1,19 @@
+{
+	"activities": [
+		{
+			"name": "Work sitting",
+			"duration": 45,
+			"locking": false
+		},
+		{
+			"name": "Work standing",
+			"duration": 15,
+			"locking": false
+		},
+		{
+			"name": "Break",
+			"duration": 5,
+			"locking": true
+		}
+	]
+}
