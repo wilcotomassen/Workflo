@@ -1,5 +1,6 @@
-import QtQuick 2.0
+import QtQuick 2.7
 import QtQuick.Controls 1.4
+import QtQuick.Controls.Styles 1.4
 
 Item {
 	id: editableText
@@ -19,21 +20,25 @@ Item {
 	]
 	state: "displayMode"
 
-	Text {
+	Item {
 		id: displayText
 		anchors.fill: parent
-		text: editableText.text
-		color: "white"
-		font {
-			family: rubikLight.name
-			pixelSize: 12
-		}
-		MouseArea {
-			enabled: true
+		Text {
+			leftPadding: 5
 			anchors.fill: parent
-			onDoubleClicked: {
-				console.log("YAY");
-				editableText.state = "editMode";
+			text: editableText.text
+			color: "white"
+			verticalAlignment: Text.AlignVCenter
+			font {
+				family: rubikLight.name
+				pixelSize: 12
+			}
+			MouseArea {
+				enabled: true
+				anchors.fill: parent
+				onDoubleClicked: {
+					editableText.state = "editMode";
+				}
 			}
 		}
 	}
@@ -44,7 +49,6 @@ Item {
 		text: editableText.text
 		placeholderText: qsTr("Enter name")
 		onEditingFinished: {
-			console.log("EDIT DONE");
 			editableText.state = "displayMode";
 			parent.text = text
 		}
@@ -52,8 +56,18 @@ Item {
 			if (visible) {
 				this.forceActiveFocus();
 			}
+		}		
+		font {
+			family: rubikLight.name
+			pixelSize: 12
 		}
-
+		style: TextFieldStyle {
+			textColor: "black"
+			background: Rectangle {
+				color: "white"
+				anchors.fill: parent
+			}
+		}
 	}
 
 }
