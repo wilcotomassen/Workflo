@@ -4,9 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui qml quick
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += core gui qml quick widgets
 
 TARGET = Workflo
 TEMPLATE = app
@@ -25,7 +23,8 @@ HEADERS  += mainwindow.h \
     activity.h \
     jsonpersistence.h
 
-DEFINES += "TIME_BASE=60000"
+DEFINES += TIME_BASE=60000
+DEFINES += SW_VERSION=\\\"3.0.1\\\"
 
 RESOURCES += \
     qml.qrc

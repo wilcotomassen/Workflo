@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 	QPixmap iconFile(64, 64);
 	iconFile.fill(Qt::black);
 
+	setMinimumSize(600, 400);
+
 	// Initialize
 	screenLock = new ScreenLock(this);
 
@@ -55,6 +57,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
 	QQmlContext* qmlContext = qmlView->rootContext();
 	qmlContext->setContextProperty("activitySequence", QVariant::fromValue(foo));
+	qmlContext->setContextProperty("version", QString(SW_VERSION));
 	qmlView->setSource(QUrl("qrc:/Settings.qml"));
 
 	QWidget* qmlWidget = QWidget::createWindowContainer(qmlView, this);
