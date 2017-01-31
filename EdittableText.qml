@@ -36,6 +36,8 @@ Item {
 			MouseArea {
 				enabled: true
 				anchors.fill: parent
+				hoverEnabled: true
+				cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
 				onDoubleClicked: {
 					editableText.state = "editMode";
 				}
@@ -47,10 +49,12 @@ Item {
 		id: editText
 		anchors.fill: parent
 		text: editableText.text
-		placeholderText: qsTr("Enter name")
+		placeholderText: "Enter name"
 		onEditingFinished: {
 			editableText.state = "displayMode";
-			parent.text = text
+			if (text !== parent.text) {
+				parent.text = text;
+			}
 		}
 		onVisibleChanged: {
 			if (visible) {

@@ -8,6 +8,7 @@ class QSystemTrayIcon;
 class QMenu;
 class ActivitySequence;
 class Activity;
+class ActivityModel;
 
 class MainWindow : public QMainWindow {
 	Q_OBJECT
@@ -25,7 +26,8 @@ private:
 	QSystemTrayIcon*	icon;
 	QMenu*				menu;
 	ScreenLock*			screenLock;
-	ActivitySequence*	sequence;
+//	ActivitySequence*	sequence;
+	ActivityModel*		activityModel;
 
 };
 

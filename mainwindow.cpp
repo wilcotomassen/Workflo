@@ -9,7 +9,9 @@
 #include <QPainter>
 #include <QQuickView>
 #include <QQmlContext>
+
 #include "activitysequence.h"
+#include "activitymodel.h"
 #include "activity.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
@@ -38,25 +40,26 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 	icon->show();
 
 	// Create sequence
-	sequence = new ActivitySequence(this);
-	connect(sequence, &ActivitySequence::activityTriggered, this, &MainWindow::handleActivityChange);
+	activityModel = new ActivityModel(this);
+	ActivityModel::declareQML();
+//	sequence = new ActivitySequence(this);
+//	connect(sequence, &ActivitySequence::activityTriggered, this, &MainWindow::handleActivityChange);
 
 	// Add activities
 	QList<Activity*> activities;
-	QList<QObject*> foo;
 	for (int i = 0; i < 4; i++) {
 		Activity* activity = new Activity("Activity " + QString::number(i), i, i == 3);
 		activities.append(activity);
-		foo.append(activity);
+		activityModel->addActivity(activity);
 	}
-	sequence->setActivities(activities);
-	sequence->start();
+//	sequence->setActivities(activities);
+//	sequence->start();
 
 	QQuickView* qmlView = new QQuickView();
 	qmlView->setResizeMode(QQuickView::SizeRootObjectToView);
 
 	QQmlContext* qmlContext = qmlView->rootContext();
-	qmlContext->setContextProperty("activitySequence", QVariant::fromValue(foo));
+	qmlContext->setContextProperty("activitySequence", activityModel);
 	qmlContext->setContextProperty("version", QString(SW_VERSION));
 	qmlView->setSource(QUrl("qrc:/Settings.qml"));
 
@@ -95,7 +98,7 @@ void MainWindow::updateIcon() {
 	// Draw progress
 	pen.setColor(QColor(255, 255, 255, 255));
 	painter.setPen(pen);
-	painter.drawArc(1, 1, 14, 14, 90 * 16, sequence->getCurrentActivityProgress() * (float) (-360 * 16));
+//	painter.drawArc(1, 1, 14, 14, 90 * 16, sequence->getCurrentActivityProgress() * (float) (-360 * 16));
 
 	painter.end();
 

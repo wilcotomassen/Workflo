@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
+import ActivityModelEnums 1.0
 
 SettingsPane {
 
@@ -20,7 +21,7 @@ SettingsPane {
 				Row {
 					anchors.fill: parent
 					Text {
-						width: parent.width * 0.5
+						width: parent.width * 0.40
 						text: " Activity"
 						color: "white"
 						font {
@@ -30,7 +31,7 @@ SettingsPane {
 						}
 					}
 					Text {
-						width: parent.width * 0.25
+						width: parent.width * 0.20
 						text: "Duration"
 						color: "white"
 						font {
@@ -41,7 +42,18 @@ SettingsPane {
 						horizontalAlignment: Text.AlignHCenter
 					}
 					Text {
-						width: parent.width * 0.25
+						width: parent.width * 0.20
+						text: "Notify"
+						color: "white"
+						font {
+							family: poppinsLight.name
+							capitalization: Font.AllUppercase
+							pixelSize: 12
+						}
+						horizontalAlignment: Text.AlignHCenter
+					}
+					Text {
+						width: parent.width * 0.20
 						text: "Lock display"
 						color: "white"
 						font {
@@ -73,12 +85,15 @@ SettingsPane {
 					Row {
 						anchors.fill: parent
 						EdittableText {
-							width: parent.width * 0.5
+							width: parent.width * 0.40
 							height: 25
 							text: name
+							onTextChanged: {
+								activitySequence.setData(index, text, ActivityRoles.NameRole);
+							}
 						}
 						Text {
-							width: parent.width * 0.25
+							width: parent.width * 0.20
 							text: duration.toString() + " m"
 							color: "white"
 							horizontalAlignment: Text.AlignHCenter
@@ -88,17 +103,52 @@ SettingsPane {
 							}
 						}
 						Text {
-							width: parent.width * 0.25
-							text: "YES"
+							width: parent.width * 0.20
 							color: "white"
 							horizontalAlignment: Text.AlignHCenter
 							font {
 								family: rubikLight.name
 								pixelSize: 12
 							}
+							MouseArea {
+								anchors.fill: parent
+								hoverEnabled: true
+								cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
+								onDoubleClicked: {
+									activitySequence.setData(index, !notifying, ActivityRoles.NotifyingRole);
+									parent.updateLabel();
+								}
+							}
+
+							function updateLabel() {
+								text =  notifying ? "YES" : "NO"
+							}
+							Component.onCompleted: updateLabel();
+						}
+						Text {
+							width: parent.width * 0.20
+							color: "white"
+							horizontalAlignment: Text.AlignHCenter
+							font {
+								family: rubikLight.name
+								pixelSize: 12
+							}
+							MouseArea {
+								anchors.fill: parent
+								hoverEnabled: true
+								cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
+								onDoubleClicked: {
+									activitySequence.setData(index, !locking, ActivityRoles.LockingRole);
+									parent.updateLabel();
+								}
+							}
+
+							function updateLabel() {
+								text =  locking ? "YES" : "NO"
+							}
+							Component.onCompleted: updateLabel();
 						}
 					}
-
 
 				}
 

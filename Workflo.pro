@@ -14,14 +14,16 @@ SOURCES += main.cpp\
     screenlock.cpp \
     screenlockdisplay.cpp \
     activitysequence.cpp \
-    activity.cpp
+    activity.cpp \
+    activitymodel.cpp
 
 HEADERS  += mainwindow.h \
     screenlock.h \
     screenlockdisplay.h \
     activitysequence.h \
     activity.h \
-    jsonpersistence.h
+    jsonpersistence.h \
+    activitymodel.h
 
 DEFINES += TIME_BASE=60000
 DEFINES += SW_VERSION=\\\"3.0.1\\\"
