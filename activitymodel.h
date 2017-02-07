@@ -30,16 +30,14 @@ public:
 
 public slots:
 	void setData(const int& index, const QVariant &value, int role);
+	void loadActivitiesFromFile(const QString& filename);
+	void saveActivitiesToFile(const QString& filename);
 
 protected:
 	QHash<int, QByteArray> roleNames() const;
 
 private:
-	 QList<Activity*>	activities;
-
-
-	 // Do not forget to declare your class to the QML system.
-
+	QList<Activity*>	activities;
 
 };
 

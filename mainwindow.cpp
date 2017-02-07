@@ -42,18 +42,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 	// Create sequence
 	activityModel = new ActivityModel(this);
 	ActivityModel::declareQML();
+	activityModel->loadActivitiesFromFile("C:/tmp/activities.xml");
+
 //	sequence = new ActivitySequence(this);
 //	connect(sequence, &ActivitySequence::activityTriggered, this, &MainWindow::handleActivityChange);
-
-	// Add activities
-	QList<Activity*> activities;
-	for (int i = 0; i < 4; i++) {
-		Activity* activity = new Activity("Activity " + QString::number(i), i, i == 3);
-		activities.append(activity);
-		activityModel->addActivity(activity);
-	}
-//	sequence->setActivities(activities);
-//	sequence->start();
 
 	QQuickView* qmlView = new QQuickView();
 	qmlView->setResizeMode(QQuickView::SizeRootObjectToView);
