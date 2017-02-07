@@ -1,0 +1,20 @@
+# Workflo
+
+Small application that aims to help people to sustain a healthy 
+working style, specifically for people working behind a screen 
+for the majority of their day.
+
+Aim is for this to be a cross platform application, but currently
+Windows is the main focus.
+
+## Prerequisites for development
+
+The application is built using Qt 5.7.9 MSVC2013, but any newer
+version of Qt should work. See the website (http://www.qt.io)
+for getting setup to do Qt development. All UI elements are 
+developed in QML, whereas the main business logic is C++.
+
+## License
+
+This software is licensed under GNU LGPLv3, see LICENSE file for 
+details
