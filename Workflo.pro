@@ -4,9 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui qml quick
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += core gui qml quick widgets
 
 TARGET = Workflo
 TEMPLATE = app
@@ -16,16 +14,19 @@ SOURCES += main.cpp\
     screenlock.cpp \
     screenlockdisplay.cpp \
     activitysequence.cpp \
-    activity.cpp
+    activity.cpp \
+    activitymodel.cpp
 
 HEADERS  += mainwindow.h \
     screenlock.h \
     screenlockdisplay.h \
     activitysequence.h \
     activity.h \
-    jsonpersistence.h
+    jsonpersistence.h \
+    activitymodel.h
 
-DEFINES += "TIME_BASE=60000"
+DEFINES += TIME_BASE=60000
+DEFINES += SW_VERSION=\\\"0.1.0\\\"
 
 RESOURCES += \
     qml.qrc

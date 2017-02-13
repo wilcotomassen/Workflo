@@ -1,5 +1,13 @@
 <RCC>
     <qresource prefix="/">
         <file>Settings.qml</file>
+        <file>ListButton.qml</file>
+        <file>SettingsPane.qml</file>
+        <file>AboutPane.qml</file>
+        <file>resources/fonts/Poppins-SemiBold.ttf</file>
+        <file>resources/fonts/Poppins-Light.ttf</file>
+        <file>resources/fonts/Rubik-Light.ttf</file>
+        <file>WorkflowPane.qml</file>
+        <file>EdittableText.qml</file>
     </qresource>
 </RCC>
