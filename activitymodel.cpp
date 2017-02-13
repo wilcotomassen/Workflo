@@ -51,7 +51,7 @@ void ActivityModel::setData(const int& index, const QVariant &value, int role) {
 		activity->setNotifying(value.toBool());
 	}
 
-	saveActivitiesToFile("C:/tmp/activities.xml");
+	saveActivitiesToFile(qApp->applicationDirPath() + "/activities.xml");
 }
 
 QHash<int, QByteArray> ActivityModel::roleNames() const {
@@ -68,7 +68,8 @@ void ActivityModel::loadActivitiesFromFile(const QString& filename) {
 	// Open file
 	QFile file(filename);
 	if (!file.open(QIODevice::ReadOnly)) {
-		QMessageBox::critical(0, "Failed to open settings file", QString("Failed to open settings file at: '%1', possibly the file is corrupt or non-readable").arg(filename));
+
+		QMessageBox::critical(0, "Failed to open settings file", QString("Failed to open settings file at: '%1', possibly the file is corrupt or non-readable %2").arg(filename, file.errorString()));
 		return;
 	}
 
@@ -116,6 +117,10 @@ void ActivityModel::loadActivitiesFromFile(const QString& filename) {
 		addActivity(activity);
 	}
 
+}
+
+void ActivityModel::addNewActivity() {
+	addActivity(new Activity("Untitled activity", 10, false));
 }
 
 void ActivityModel::saveActivitiesToFile(const QString& filename) {

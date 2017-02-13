@@ -9,6 +9,7 @@
 #include <QPainter>
 #include <QQuickView>
 #include <QQmlContext>
+#include <QDir>
 
 #include "activitysequence.h"
 #include "activitymodel.h"
@@ -42,7 +43,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 	// Create sequence
 	activityModel = new ActivityModel(this);
 	ActivityModel::declareQML();
-	activityModel->loadActivitiesFromFile("C:/tmp/activities.xml");
+	activityModel->loadActivitiesFromFile(qApp->applicationDirPath() + "/activities.xml");
+
 
 //	sequence = new ActivitySequence(this);
 //	connect(sequence, &ActivitySequence::activityTriggered, this, &MainWindow::handleActivityChange);

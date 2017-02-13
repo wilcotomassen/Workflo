@@ -30,6 +30,7 @@ public:
 
 public slots:
 	void setData(const int& index, const QVariant &value, int role);
+	void addNewActivity();
 	void loadActivitiesFromFile(const QString& filename);
 	void saveActivitiesToFile(const QString& filename);
 

@@ -73,7 +73,6 @@ SettingsPane {
 				}
 			}
 
-
 			ListView {
 				model: activitySequence;
 				Layout.fillWidth: true
@@ -152,6 +151,37 @@ SettingsPane {
 
 				}
 
+			}
+
+			Item {
+				Layout.fillWidth: true
+				Layout.preferredHeight:40
+
+				Rectangle {
+					anchors.top: parent.top
+					anchors.left: parent.left
+					width: 30
+					height: width
+					radius:width / 2
+					border.width: 2
+					border.color: "#ffffff"
+					color: "transparent"
+
+					Text {
+						x: 8
+						y: 1
+						color: "#ffffff"
+						text: "+"
+						font.pixelSize: 20
+						horizontalAlignment: Text.AlignHCenter
+						verticalAlignment: Text.AlignVCenter
+					}
+
+					MouseArea {
+						anchors.fill: parent
+						onClicked: activitySequence.addNewActivity()
+					}
+				}
 			}
 		}
 

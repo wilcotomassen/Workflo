@@ -26,7 +26,7 @@ HEADERS  += mainwindow.h \
     activitymodel.h
 
 DEFINES += TIME_BASE=60000
-DEFINES += SW_VERSION=\\\"3.0.1\\\"
+DEFINES += SW_VERSION=\\\"0.1.0\\\"
 
 RESOURCES += \
     qml.qrc
