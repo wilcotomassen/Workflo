@@ -27,6 +27,9 @@ public:
 	void addActivity(Activity* activity);
 	int rowCount(const QModelIndex & parent = QModelIndex()) const;
 	QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
+	QList<Activity*> getActivities();
+
+	static QString getActivityFile();
 
 public slots:
 	void setData(const int& index, const QVariant &value, int role);

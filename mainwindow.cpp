@@ -43,11 +43,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 	// Create sequence
 	activityModel = new ActivityModel(this);
 	ActivityModel::declareQML();
-	activityModel->loadActivitiesFromFile(qApp->applicationDirPath() + "/activities.xml");
+	activityModel->loadActivitiesFromFile(ActivityModel::getActivityFile());
 
-
-//	sequence = new ActivitySequence(this);
-//	connect(sequence, &ActivitySequence::activityTriggered, this, &MainWindow::handleActivityChange);
+	sequence = new ActivitySequence(this);
+	sequence->setActivities(activityModel->getActivities());
+	connect(sequence, &ActivitySequence::activityTriggered, this, &MainWindow::handleActivityChange);
+	sequence->start();
 
 	QQuickView* qmlView = new QQuickView();
 	qmlView->setResizeMode(QQuickView::SizeRootObjectToView);
@@ -92,8 +93,7 @@ void MainWindow::updateIcon() {
 	// Draw progress
 	pen.setColor(QColor(255, 255, 255, 255));
 	painter.setPen(pen);
-//	painter.drawArc(1, 1, 14, 14, 90 * 16, sequence->getCurrentActivityProgress() * (float) (-360 * 16));
-
+	painter.drawArc(1, 1, 14, 14, 90 * 16, sequence->getCurrentActivityProgress() * (float) (-360 * 16));
 	painter.end();
 
 	icon->setIcon(QIcon(iconFile));

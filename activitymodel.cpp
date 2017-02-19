@@ -51,7 +51,11 @@ void ActivityModel::setData(const int& index, const QVariant &value, int role) {
 		activity->setNotifying(value.toBool());
 	}
 
-	saveActivitiesToFile(qApp->applicationDirPath() + "/activities.xml");
+	saveActivitiesToFile(getActivityFile());
+}
+
+QString ActivityModel::getActivityFile() {
+	return qApp->applicationDirPath() + "/activities.xml";
 }
 
 QHash<int, QByteArray> ActivityModel::roleNames() const {
@@ -61,6 +65,10 @@ QHash<int, QByteArray> ActivityModel::roleNames() const {
 	roles[LockingRole] = "locking";
 	roles[NotifyingRole] = "notifying";
 	return roles;
+}
+
+QList<Activity*> ActivityModel::getActivities() {
+	return activities;
 }
 
 void ActivityModel::loadActivitiesFromFile(const QString& filename) {

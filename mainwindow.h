@@ -26,7 +26,7 @@ private:
 	QSystemTrayIcon*	icon;
 	QMenu*				menu;
 	ScreenLock*			screenLock;
-//	ActivitySequence*	sequence;
+	ActivitySequence*	sequence;
 	ActivityModel*		activityModel;
 
 };
